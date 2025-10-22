@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void {
+        Schema::create('payslips', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('employee_id')->unsigned();
+            $table->bigInteger('transaction_id')->unsigned()->nullable();
+            $table->integer('month');
+            $table->integer('year');
+            $table->decimal('current_salary', 28, 8);
+            $table->decimal('working_hours')->nullable();
+            $table->decimal('hour_deduct')->nullable();
+            $table->decimal('expense', 28, 8)->default(0);
+            $table->decimal('loan', 28, 8)->default(0);
+            $table->decimal('loan_interest', 28, 8)->default(0);
+            $table->decimal('absence_fine', 28, 8)->default(0);
+            $table->decimal('net_salary', 8, 2);
+            $table->tinyInteger('status')->deafult(0);
+            $table->timestamps();
+
+            $table->foreign('transaction_id')->references('id')->on('transactions')->cascadeOnDelete();
+            $table->foreign('employee_id')->references('id')->on('employees')->cascadeOnDelete();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void {
+        Schema::dropIfExists('payslips');
+    }
+};
