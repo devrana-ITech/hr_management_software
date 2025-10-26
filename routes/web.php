@@ -29,6 +29,7 @@ use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\WorkingHourController;
@@ -60,6 +61,10 @@ $ev = env('APP_INSTALLED', true) == true ? get_option('email_verification', 0) :
     if ($ev == 1) {
         array_push($initialMiddleware, 'verified');
     }
+
+    //  Route::get('units/create', [UnitController::class, 'index'])->name('units.create');
+    //  Route::post('units', [UnitController::class, 'store'])->name('units.store');
+    //  Route::resource('units', UnitController::class);
 
     Route::group(['middleware' => $initialMiddleware], function () {
 
@@ -136,6 +141,10 @@ $ev = env('APP_INSTALLED', true) == true ? get_option('email_verification', 0) :
             Route::resource('departments', DepartmentController::class);
             Route::get('designations/get_designations/{deaprtment_id}', [DesignationController::class, 'get_designations']);
             Route::resource('designations', DesignationController::class)->except('show');
+
+            //Unit Controller
+            // Route::get('units/create', [UnitController::class, 'index']);
+            Route::resource('units', UnitController::class);
 
             //Staff Controller
             Route::match(['get', 'post'], 'employees/{id}/login_access', [EmployeeController::class, 'login_access'])->name('employees.login_access');

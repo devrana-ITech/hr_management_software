@@ -18,7 +18,8 @@
 							<th>{{ _lang('Last Name') }}</th>
 							<th>{{ _lang('Department') }}</th>
 							<th>{{ _lang('Designation') }}</th>
-							<th>{{ _lang('Salary') }}</th>
+							<th>{{ _lang('Joining Date') }}</th>
+							<th>{{ _lang('End Date') }}</th>
 							<th class="text-center">{{ _lang('Action') }}</th>
 					    </tr>
 					</thead>
@@ -30,7 +31,8 @@
 							<td class='descriptions'>{{ $employee->last_name }}</td>
 							<td class='descriptions'>{{ $employee->department->name }}</td>
 							<td class='descriptions'>{{ $employee->designation->name }}</td>
-							<td class='descriptions'>{{ $employee->salary_type }}</td>
+							<td class='descriptions'>{{ $employee->joining_date }}</td>
+							<td class='descriptions'>{{ $employee->end_date }}</td>
 							<td class="text-center">
 								<span class="dropdown">
 								  <button class="btn btn-outline-primary dropdown-toggle btn-xs" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

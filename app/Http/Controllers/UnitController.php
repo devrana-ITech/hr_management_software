@@ -14,8 +14,10 @@ class UnitController extends Controller
     public function index()
     {
         $assets = ['datatables'];
-        $units = Unit::all()->sortByDesc('id');
+        $units = Unit::orderByDesc('id')->paginate(10);
         return view('backend.admin.unit.list', compact('assets', 'units'));
+
+
     }
 
     /**
@@ -43,7 +45,7 @@ class UnitController extends Controller
             if($request->ajax()){
                 return response()->json(['result'=> 'error', 'message' => $validator->errors()->all()]);
             }else{
-                return redirect()->route('unit.create')
+                return redirect()->route('units.create')
                 ->withErrors($validator)
                 ->whitInput();
             }
@@ -56,7 +58,7 @@ class UnitController extends Controller
         $units->save();
 
         if(!$request->ajax()){
-            return redirect()->route('unit.create')->with('succuse', _lang('Save Successfully'));
+            return redirect()->route('units.create')->with('succuse', _lang('Save Successfully'));
         }else{
             return response()->json(['result' => 'success', 'action' => 'store', 'message' => _lang('Saved Successfully'), 'data' => $units, 'table' => '#units_tables']);
         }

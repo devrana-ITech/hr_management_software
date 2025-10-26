@@ -28,6 +28,7 @@ return new class extends Migration {
 
             $table->bigInteger('department_id')->unsigned()->nullable();
             $table->bigInteger('designation_id')->unsigned()->nullable();
+            $table->bigInteger('unit_id')->unsigned()->nullable();
             $table->date('joining_date');
             $table->date('end_date')->nullable();
 

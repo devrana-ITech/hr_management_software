@@ -26,7 +26,7 @@ class EmployeeController extends Controller {
      */
     public function index() {
         $assets = ['datatable'];
-        $employees = Employee::paginate(10);
+        $employees = Employee::orderByDesc('id')->paginate(10);
         return view('backend.admin.employee.list', compact('assets','employees'));
     }
 
@@ -92,12 +92,8 @@ class EmployeeController extends Controller {
             'phone'                 => 'nullable|max:30',
             'department_id'         => 'required',
             'designation_id'        => 'required',
+            'unit_id'               => 'required',
             'joining_date'          => 'required',
-            'salary_type'           => 'required',
-            'basic_salary'          => 'required|numeric',
-            'full_day_absence_fine' => 'required|numeric',
-            'half_day_absence_fine' => 'required|numeric',
-            'yearly_leave_limit'    => 'required|integer',
             'image'                 => 'nullable|image|max:4096',
         ]);
 
@@ -137,6 +133,7 @@ class EmployeeController extends Controller {
 
         $employee->department_id         = $request->input('department_id');
         $employee->designation_id        = $request->input('designation_id');
+        $employee->unit_id        = $request->input('unit_id');
         $employee->joining_date          = $request->input('joining_date');
         $employee->end_date              = $request->input('end_date');
         $employee->salary_type           = $request->salary_type;
