@@ -26,7 +26,7 @@ class EmployeeController extends Controller {
      */
     public function index() {
         $assets = ['datatable'];
-        $employees = Employee::paginate(2);
+        $employees = Employee::paginate(10);
         return view('backend.admin.employee.list', compact('assets','employees'));
     }
 

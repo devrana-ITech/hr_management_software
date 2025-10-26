@@ -53,7 +53,7 @@
 					</tbody>
 				</table>
                 <div class="d-flex justify-content-end">{{ $employees->links() }}</div>
-                
+
 			</div>
 		</div>
 	</div>

@@ -9,7 +9,7 @@ $loan_application = request_count('loan_application');
 	<a href="{{ route('dashboard.index') }}"><i class="fas fa-th-large"></i><span>{{ _lang('Dashboard') }}</span></a>
 </li>
 
-<li>
+{{-- <li>
 	<a href="javascript: void(0);"><i class="fas fa-user-friends"></i><span>{{ _lang('Employees') }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 	<ul class="nav-second-level" aria-expanded="false">
 		<li class="nav-item"><a class="nav-link" href="{{ route('employees.index') }}">{{ _lang('Manage Employees') }}</a></li>
@@ -17,9 +17,19 @@ $loan_application = request_count('loan_application');
 		<li class="nav-item"><a class="nav-link" href="{{ route('designations.index') }}">{{ _lang('Designations') }}</a></li>
 		<li class="nav-item"><a class="nav-link" href="{{ route('employees.create') }}">{{ _lang('Add Employee') }}</a></li>
 	</ul>
+</li> --}}
+<li>
+
+		<li class="nav-item"><a class="nav-link" href="{{ route('employees.index') }}">{{ _lang('Manage Employees') }}</a></li>
+		<li class="nav-item"><a class="nav-link" href="{{ route('departments.index') }}">{{ _lang('Departments') }}</a></li>
+		<li class="nav-item"><a class="nav-link" href="{{ route('designations.index') }}">{{ _lang('Designations') }}</a></li>
+		<li class="nav-item"><a class="nav-link" href="{{ route('employees.create') }}">{{ _lang('Add Employee') }}</a></li>
+		<li class="nav-item"><a class="nav-link" href="avascript: void(0);">{{ _lang('Units') }}</a></li>
+		<li class="nav-item"><a class="nav-link" href="avascript: void(0);">{{ _lang('Employees Report') }}</a></li>
+
 </li>
 
-<li>
+{{-- <li>
 	<a href="javascript: void(0);"><i class="far fa-clock"></i><span>{{ _lang('Manage Work Hours') }}</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 	<ul class="nav-second-level" aria-expanded="false">
 		<li class="nav-item"><a class="nav-link" href="{{ route('working_hours.create') }}">{{ _lang('Manage Work Hours') }}</a></li>
@@ -135,4 +145,4 @@ $loan_application = request_count('loan_application');
 
 <li><a href="{{ route('settings.update_settings') }}"><i class="fas fa-cog"></i><span>{{ _lang('System Settings') }}</span></a></li>
 <li><a href="{{ route('notification_templates.index') }}"><i class="fas fa-envelope-open-text"></i><span>{{ _lang('Notification Templates') }}</span></a></li>
-<li><a href="{{ route('database_backups.list') }}"><i class="fas fa-server"></i><span>{{ _lang('Database Backup') }}</span></a></li>
+<li><a href="{{ route('database_backups.list') }}"><i class="fas fa-server"></i><span>{{ _lang('Database Backup') }}</span></a></li> --}}
