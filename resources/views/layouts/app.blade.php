@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        
+
 		<!-- App favicon -->
         <link rel="shortcut icon" href="{{ get_favicon() }}">
 		<link href="{{ asset('backend/plugins/dropify/css/dropify.min.css') }}" rel="stylesheet">
@@ -15,7 +15,7 @@
 		<link href="{{ asset('backend/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 	    <link href="{{ asset('backend/plugins/jquery-toast-plugin/jquery.toast.min.css') }}" rel="stylesheet" />
 		<link href="{{ asset('backend/plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet" />
-        
+
 		<!-- App Css -->
         <link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('backend/assets/css/fontawesome.css') }}">
@@ -28,24 +28,24 @@
 
 		<!-- Conditionals CSS -->
 		@include('layouts.others.import-css')
-	
+
 		<!-- Others css -->
 		<link rel="stylesheet" href="{{ asset('backend/assets/css/typography.css') }}">
 		<link rel="stylesheet" href="{{ asset('backend/assets/css/default-css.css') }}">
 		<link rel="stylesheet" href="{{ asset('backend/assets/css/styles.css?v=1.1') }}">
 		<link rel="stylesheet" href="{{ asset('backend/assets/css/responsive.css?v=1.0') }}">
-		
+
 		<!-- Modernizr -->
-		<script src="{{ asset('backend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>     
+		<script src="{{ asset('backend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
 
 		@if(get_option('backend_direction') == "rtl")
 			<link rel="stylesheet" href="{{ asset('backend/assets/css/rtl/style.css?v=1.0') }}">
 		@endif
-		
-		@include('layouts.others.languages')	
+
+		@include('layouts.others.languages')
     </head>
 
-    <body>  
+    <body>
 		<!-- Main Modal -->
 		<div id="main_modal" class="modal" tabindex="-1" role="dialog">
 		    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -56,15 +56,15 @@
 						  <span aria-hidden="true"><i class="ti-close text-danger"></i></span>
 						</button>
 				    </div>
-				  
+
 				    <div class="alert alert-danger d-none mx-3 mt-2"></div>
-				    <div class="alert alert-primary d-none mx-3 mt-2"></div>			  
+				    <div class="alert alert-primary d-none mx-3 mt-2"></div>
 				    <div class="modal-body overflow-hidden"></div>
-				  
+
 				</div>
 		    </div>
 		</div>
-		
+
 		<!-- Secondary Modal -->
 		<div id="secondary_modal" class="modal" tabindex="-1" role="dialog">
 		    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -75,14 +75,14 @@
 						  <span aria-hidden="true"><i class="ti-close text-danger"></i></span>
 						</button>
 				    </div>
-				  
+
 				    <div class="alert alert-danger d-none mx-3 mt-2"></div>
-				    <div class="alert alert-primary d-none mx-3 mt-2"></div>			  
+				    <div class="alert alert-primary d-none mx-3 mt-2"></div>
 				    <div class="modal-body overflow-hidden"></div>
 				</div>
 		    </div>
 		</div>
-	     
+
 		<!-- Preloader area start -->
 		<div id="preloader">
 			<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -90,13 +90,13 @@
 		<!-- Preloader area end -->
 
 		@php $user_type = auth()->user()->user_type; @endphp
-		
+
 		<div class="page-container">
 		    <!-- sidebar menu area start -->
 			<div class="sidebar-menu">
 				<div class="extra-details">
 					<a href="{{ route('dashboard.index') }}">
-						<img class="sidebar-logo" src="{{ get_logo() }}" alt="logo">				
+						<img class="sidebar-logo" src="{{ get_logo() }}" alt="logo">
 					</a>
 				</div>
 
@@ -111,7 +111,7 @@
 				</div>
 			</div>
 			<!-- sidebar menu area end -->
-        
+
 			<!-- main content area start -->
 			<div class="main-content">
 				<!-- header area start -->
@@ -128,7 +128,7 @@
 
 						<!-- profile info & task notification -->
 						<div class="col-lg-6 col-8 clearfix rtl-1">
-							
+
 							<ul class="notification-area float-right d-flex align-items-center">
 	                            <li class="dropdown d-none d-sm-inline-block">
 									<div class="dropdown">
@@ -165,7 +165,7 @@
 											@endif
 
 											@foreach ($notifications as $notification)
-											<a href="{{ route('profile.show_notification', $notification->id) }}" class="d-flex ajax-modal notify-item" data-title="{{ $notification->data['subject'] }}">	
+											<a href="{{ route('profile.show_notification', $notification->id) }}" class="d-flex ajax-modal notify-item" data-title="{{ $notification->data['subject'] }}">
 												<div class="notify-thumb {{ $notification->read_at == null ? 'unread-thumb' : '' }}"></div>
 												<div class="notify-text {{ $notification->read_at == null ? 'font-weight-bold' : '' }}">
 													<p><i class="far fa-bell"></i> {{ $notification->data['subject'] }}</p>
@@ -176,17 +176,16 @@
 										</div>
 									</div>
 								</li>
-								
+
 								<li>
 									<div class="user-profile">
 										<h4 class="user-name dropdown-toggle" data-toggle="dropdown">
 											<img class="avatar user-thumb" id="my-profile-img" src="{{ profile_picture() }}" alt="avatar"> {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
 										</h4>
 										<div class="dropdown-menu">
-											
 											<a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="ti-pencil text-muted mr-2"></i>{{ _lang('Profile Settings') }}</a>
 											<a class="dropdown-item" href="{{ route('profile.change_password') }}"><i class="ti-exchange-vertical text-muted mr-2"></i></i>{{ _lang('Change Password') }}</a>
-											
+
 											@if(auth()->user()->user_type == 'admin')
 											<a class="dropdown-item" href="{{ route('settings.update_settings') }}"><i class="ti-settings text-muted mr-2"></i>{{ _lang('System Settings') }}</a>
 											@endif
@@ -196,27 +195,27 @@
 										</div>
 									</div>
 	                            </li>
-	                            
+
 	                        </ul>
 
 						</div>
 					</div>
 				</div><!-- header area end -->
-				
+
 				<!-- page title area start -->
 				@if(Request::is('dashboard'))
 				<div class="page-title-area mb-3">
 					<div class="row align-items-center py-3">
 						<div class="col-sm-12">
 							<div class="breadcrumbs-area clearfix">
-								<h6 class="page-title float-left">{{ _lang('Dashboard') }}</h6>				
+								<h6 class="page-title float-left">{{ _lang('Dashboard') }}</h6>
 							</div>
 						</div>
 					</div>
 				</div><!-- page title area end -->
 				@endif
-				
-				<div class="main-content-inner {{ ! Request::is('dashboard') ? 'mt-4' : '' }}">		
+
+				<div class="main-content-inner {{ ! Request::is('dashboard') ? 'mt-4' : '' }}">
 					<div class="row">
 						<div class="{{ isset($alert_col) ? $alert_col : 'col-lg-12' }}">
 							<div class="alert alert-success alert-dismissible" id="main_alert" role="alert">
@@ -227,7 +226,6 @@
 							</div>
 						</div>
 					</div>
-
 					@if(session('login_as_user') == true && session('admin') != null)
 					<div class="row">
 						<div class="{{ isset($alert_col) ? $alert_col : 'col-lg-12' }}">
@@ -237,10 +235,11 @@
 						</div>
 					</div>
 					@endif
-                    
+
 					@yield('content')
+
 				</div><!--End main content Inner-->
-				
+
 			</div><!--End main content-->
 
 		</div><!--End Page Container-->
@@ -249,14 +248,14 @@
 		<script src="{{ asset('backend/assets/js/vendor/jquery-3.7.1.min.js') }}"></script>
 		<script src="{{ asset('backend/assets/js/popper.min.js') }}"></script>
 		<script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-		<script src="{{ asset('backend/plugins/metisMenu/metisMenu.min.js') }}"></script>     
+		<script src="{{ asset('backend/plugins/metisMenu/metisMenu.min.js') }}"></script>
 		<script src="{{ asset('backend/assets/js/print.js') }}"></script>
 		<script src="{{ asset('backend/plugins/pace/pace.min.js') }}"></script>
         <script src="{{ asset('backend/plugins/moment/moment.js') }}"></script>
-		
+
 		<!-- Conditional JS -->
         @include('layouts.others.import-js')
-		
+
 		<script src="{{ asset('backend/plugins/dropify/js/dropify.min.js') }}"></script>
 		<script src="{{ asset('backend/plugins/sweet-alert2/js/sweetalert2.min.js') }}"></script>
 		<script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
@@ -268,8 +267,8 @@
         <script src="{{ asset('backend/assets/js/scripts.js?v=1.1') }}"></script>
 
 		@include('layouts.others.alert')
-		 
+
 		<!-- Custom JS -->
-		@yield('js-script')	
+		@yield('js-script')
     </body>
 </html>

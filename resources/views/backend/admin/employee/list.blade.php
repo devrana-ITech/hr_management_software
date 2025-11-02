@@ -9,8 +9,47 @@
 				<span class="panel-title">{{ _lang('Employees') }}</span>
 				<a class="btn btn-primary btn-xs ml-auto" href="{{ route('employees.create') }}"><i class="ti-plus"></i> {{ _lang('Add New') }}</a>
 			</div>
+
+{{--
+<div class="row align-items-center mb-3">
+  <div class="col-md-6 col-sm-12">
+    <div class="dataTables_length" id="DataTables_Table_0_length">
+      <label class="d-flex align-items-center">
+        <span class="me-2 ml-3 mt-3 mr-2">Show</span>
+        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+          class="form-select form-select-lg w-auto mt-3">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <span class="ms-2 mt-3 mr-2 ml-2">entries</span>
+      </label>
+    </div>
+  </div> --}}
+
+
+    <x-search
+        :perPage="$perPage"
+        :value="$search ?? ''"
+        :placeholder="'Search by name...'"
+        :action="route('employees.index')" />
+
+
+  {{-- <div class="col-md-6 col-sm-12 text-md-end mt-2 mt-md-0">
+    <label class="d-flex align-items-center justify-content-md-end">
+      <span class="me-2 mt-3 mr-1">Search:</span>
+      <input type="search" class="form-control form-control-sm w-auto mt-3 mr-3"
+        placeholder="Type to search..." aria-controls="DataTables_Table_0">
+    </label>
+  </div>
+</div> --}}
+
+{{-- <x-search/> --}}
+
+
 			<div class="card-body">
-				<table id="employees_table" class="table">
+				<table id="employees_table" class="table tableBody">
 					<thead>
 					    <tr>
 						    <th>{{ _lang('Employee ID') }}</th>

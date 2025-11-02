@@ -24,10 +24,28 @@ class EmployeeController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $assets = ['datatable'];
-        $employees = Employee::orderByDesc('id')->paginate(10);
-        return view('backend.admin.employee.list', compact('assets','employees'));
+    public function index(Request $request) {
+        // $assets = ['datatable'];
+        // $employees = Employee::orderByDesc('id')->paginate(10);
+        // return view('backend.admin.employee.list', compact('assets','employees'));
+
+        $search = $request->input('search','');
+        $perPage = $request->input('per_page', 5);
+
+    // Employee query
+    $employees = Employee::when($search, function ($query, $search) {
+        return $query->where('first_name', 'like', "%{$search}%");
+    })
+    ->orderBy('first_name', 'asc') 
+    ->paginate($perPage)
+    ->withQueryString();
+
+    if ($request->ajax()) {
+        $html = view('backend.admin.employee.list', compact('employees'))->render();
+        return response()->json(['html' => $html]);
+    }
+
+    return view('backend.admin.employee.list', compact('employees', 'search', 'perPage'));
     }
 
     public function get_table_data() {
