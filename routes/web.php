@@ -225,7 +225,7 @@ $ev = env('APP_INSTALLED', true) == true ? get_option('email_verification', 0) :
             Route::get('/reports/trial-balance', [ReportController::class, 'trialBalance'])->name('reports.trialBalance');
             Route::get('/reports/profit-and-loss', [ReportController::class, 'profitAndLoss'])->name('reports.profitAndLoss');
             Route::get('/reports/balance-sheet', [ReportController::class, 'balanceSheet'])->name('reports.balanceSheet');
-
+            Route::get('/employee-report', [EmployeeController::class, 'unitReport'])->name('employee.report');
         });
 
         /** Employee Only Route **/

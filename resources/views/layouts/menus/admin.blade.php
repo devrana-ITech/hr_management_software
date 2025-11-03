@@ -25,7 +25,7 @@ $loan_application = request_count('loan_application');
 		<li class="nav-item"><a class="nav-link" href="{{ route('designations.index') }}">{{ _lang('Designations') }}</a></li>
 		<li class="nav-item"><a class="nav-link" href="{{ route('employees.create') }}">{{ _lang('Add Employee') }}</a></li>
 		<li class="nav-item"><a class="nav-link" href="{{ route('units.index') }}">{{ _lang('Units') }}</a></li>
-		<li class="nav-item"><a class="nav-link" href="avascript: void(0);">{{ _lang('Employees Report') }}</a></li>
+		<li class="nav-item"><a class="nav-link" href="{{route('employee.report')}}">{{ _lang('Employees Report') }}</a></li>
 
 </li>
 

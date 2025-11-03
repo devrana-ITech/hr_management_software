@@ -18,6 +18,10 @@ class Employee extends Model {
         return $query->whereRaw("employees.end_date is NULL OR employees.end_date > $date");
     }
 
+    public function unit() {
+        return $this->belongsTo(Unit::class, 'unit_id')->withDefault();
+    }
+
     public function department() {
         return $this->belongsTo(Department::class, 'department_id')->withDefault();
     }

@@ -8,6 +8,7 @@ use App\Models\EmployeeLoan;
 use App\Models\Leave;
 use App\Models\Payroll;
 use App\Models\PayrollBenefit;
+use App\Models\Unit;
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,7 +37,7 @@ class EmployeeController extends Controller {
     $employees = Employee::when($search, function ($query, $search) {
         return $query->where('first_name', 'like', "%{$search}%");
     })
-    ->orderBy('first_name', 'asc') 
+    ->orderBy('first_name', 'asc')
     ->paginate($perPage)
     ->withQueryString();
 
@@ -472,4 +473,22 @@ class EmployeeController extends Controller {
         $employee->delete();
         return redirect()->route('employees.index')->with('success', _lang('Deleted Successfully'));
     }
+
+
+     public function unitReport(Request $request)
+    {
+        // যদি unit filter করা থাকে
+        $unit_id = $request->input('unit_id');
+
+        $units = Unit::all(); // সব unit list দেখানোর জন্য dropdown
+
+        $employees = Employee::with(['unit', 'department', 'designation'])
+            ->when($unit_id, function($query, $unit_id) {
+                return $query->where('unit_id', $unit_id);
+            })
+            ->get();
+
+        return view('backend.admin.reports.employee_report', compact('employees', 'units', 'unit_id'));
+    }
+
 }
